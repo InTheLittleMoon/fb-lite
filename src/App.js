@@ -10,8 +10,8 @@ import MainPage from "./components/MainPage/MainPage";
 
 function App() {
   //states
-  const [user, setUser] = useState(null);
-  const [loggedInStatus, setLoggedInStatus] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loggedInStatus, setLoggedInStatus] = useState(true);
 
   const loginHandler = (userLoginInput) => {
     console.log(userLoginInput);
@@ -24,7 +24,7 @@ function App() {
       .then(function (response) {
         console.log(response);
         if (response.data.success) {
-          setUser(response.data);
+          setCurrentUser(response.data);
           console.log(response.data);
           setLoggedInStatus(true);
         } else {
@@ -39,7 +39,7 @@ function App() {
   return (
     <div className="App">
       {!loggedInStatus && <LoginPage loginHandler={loginHandler} />}
-      {loggedInStatus && <MainPage />}
+      {loggedInStatus && <MainPage currentUser={currentUser} />}
     </div>
   );
 }

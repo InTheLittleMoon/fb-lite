@@ -1,0 +1,79 @@
+.main-container {
+  margin: 1.5% auto;
+  width: 70%;
+  height: 90vh;
+  padding: 1%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.user-container {
+  width: 20%;
+  height: 100%;
+}
+
+.user-info-container {
+  width: 100%;
+  height: 18%;
+  padding: 1%;
+  box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.17);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 45%;
+}
+
+.post-creator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 45%;
+}
+
+.post-creator button {
+  width: 70%;
+  height: 40%;
+  border: none;
+  box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.17);
+  border-radius: 0.5rem;
+  font-size: large;
+  font-weight: 600;
+  color: white;
+  background-color: rgb(93, 160, 236);
+}
+
+.post-creator button:hover {
+  cursor: pointer;
+  background-color: rgb(93, 160, 236);
+}
+
+.post-creator button:active {
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+  -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
+  outline: none;
+}
+
+.user-posts-container {
+  width: 50%;
+  padding: 1%;
+  box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.17);
+  border-radius: 1rem;
+}
+
+.other-users-container {
+  width: 20%;
+  padding: 1%;
+  box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.17);
+  border-radius: 1rem;
+}
