@@ -1,20 +1,30 @@
 import React, { useState } from "react";
 import "./MainPage.css";
-import OtherUsers from "../OtherUsers/OtherUsers";
+
+//components
 import Posts from "../Posts/Posts";
 
 function MainPage({ currentUser }) {
   // states
   const [createPostTrigger, setCreatePostTrigger] = useState(false);
+  const [textInputValue, setTextInputValue] = useState("");
+  const [fadeOutAnimation, setFadeOutAnimation] = useState(false);
 
   const postCreatorHandler = () => {
-    console.log("Creates Post");
-    // setCreatePostTrigger(true);
+    setCreatePostTrigger(true);
   };
 
-  const cancelPostCreator = () => {
-    console.log("Cancels Create Post");
-    // setCreatePostTrigger(false);
+  const cancelPostCreatorHandler = () => {
+    setFadeOutAnimation(true);
+  };
+
+  const postTextInputHandler = (event) => {
+    setTextInputValue(event.target.value);
+  };
+
+  const createNewPost = (newPostContent) => {
+    console.log(newPostContent);
+    setFadeOutAnimation(true);
   };
 
   return (
@@ -28,26 +38,61 @@ function MainPage({ currentUser }) {
             <h3>x posts</h3>
           </div>
           <div className="post-creator">
-            {/* should have popup similar to other app to make posts */}
             {/* should be conditonal button that rerenders on click */}
-            <button
-              onClick={() => {
-                postCreatorHandler();
-              }}
-            >
-              Create New Post
-            </button>
+            {!createPostTrigger && (
+              <button
+                onClick={() => {
+                  postCreatorHandler();
+                }}
+              >
+                Create New Post
+              </button>
+            )}
+            {createPostTrigger && (
+              <button
+                onClick={() => {
+                  cancelPostCreatorHandler();
+                }}
+              >
+                Cancel Create Post
+              </button>
+            )}
           </div>
         </div>
+        {/* conditionally based on button above */}
+        {createPostTrigger && (
+          <div
+            className={`post-creator-block ${
+              fadeOutAnimation ? "fade-out" : "fade-in-slide-down"
+            }`}
+            onAnimationEnd={() => {
+              if (fadeOutAnimation) {
+                setCreatePostTrigger(false);
+                setFadeOutAnimation(false);
+              }
+            }}
+          >
+            <textarea
+              placeholder="What's on your mind?"
+              value={textInputValue}
+              onChange={(event) => {
+                postTextInputHandler(event);
+              }}
+            />
+            <button
+              onClick={() => {
+                createNewPost(textInputValue);
+              }}
+            >
+              Post
+            </button>
+          </div>
+        )}
       </div>
       <div className="user-posts-container">
         {/* should have all posts from newest at top to oldest */}
         {/* should have window extend when someone wants to comment */}
         <Posts />
-      </div>
-      <div className="other-users-container">
-        {/* should have all other users */}
-        <OtherUsers />
       </div>
     </div>
   );
