@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./MainPage.css";
+import axios from "axios";
 
 //components
 import Posts from "../Posts/Posts";
@@ -26,7 +27,14 @@ function MainPage({ currentUser }) {
   };
 
   const createNewPost = (newPostContent) => {
+    // handles empty posts
+    if (newPostContent === "") {
+      return;
+    }
+
     console.log(newPostContent);
+    let newPost = { creator: "DSSDcDcdFDd", content: newPostContent };
+    setCreatedPostsContainer([...createdPostsContainer, newPost]);
     setFadeOutAnimation(true);
     setTextInputValue("");
   };
@@ -36,14 +44,12 @@ function MainPage({ currentUser }) {
       <div className="user-container">
         <div className="user-info-container">
           <div className="user-details">
-            {/* should have user name and posts total */}
             <h1>username</h1>
-            {/* make conditional on amount of posts */}
-            <h3>x posts</h3>
+            <h3>{createdPostsContainer.length} posts</h3>
+            {/* should be conditional based on username that matches posts */}
             <h3>Your posts: xxx</h3>
           </div>
           <div className="post-creator">
-            {/* should be conditonal button that rerenders on click */}
             {!createPostTrigger && (
               <button
                 onClick={() => {
@@ -64,7 +70,6 @@ function MainPage({ currentUser }) {
             )}
           </div>
         </div>
-        {/* conditionally based on button above */}
         {createPostTrigger && (
           <div
             className={`post-creator-block ${
@@ -95,7 +100,6 @@ function MainPage({ currentUser }) {
         )}
       </div>
       <div className="user-posts-container">
-        {/* should have all posts from newest at top to oldest */}
         {/* should have window extend when someone wants to comment */}
         <Posts createdPostsContainer={createdPostsContainer} />
       </div>

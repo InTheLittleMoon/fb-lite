@@ -1,6 +1,6 @@
 .main-container {
   margin: 1.5% auto;
-  width: 50%;
+  width: 70%;
   height: 90vh;
   padding: 1%;
   display: flex;
@@ -145,13 +145,16 @@
 }
 
 .user-posts-container {
-  width: 55%;
+  width: 60%;
   height: fit-content;
   max-height: 100%;
   overflow-y: auto;
   padding: 1%;
   box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.17);
   border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: gainsboro;
 }
 
 /* custom scrollbar */

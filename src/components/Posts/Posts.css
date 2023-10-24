@@ -8,3 +8,58 @@
   font-size: 2rem;
   text-align: center;
 }
+
+.post {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid gainsboro;
+  margin-bottom: 1%;
+  background-color: white;
+}
+
+.post-creator-data {
+  width: 10%;
+}
+
+.horizontal-divider-line {
+  border-bottom: 2px solid gainsboro;
+  width: 95%;
+  align-self: center;
+}
+
+.post-content-data {
+  width: 90%;
+  margin-bottom: 3%;
+}
+
+.post-interactions-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.interaction-totals {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.interaction-buttons {
+  display: flex;
+  border-top: 1px solid gainsboro;
+}
+
+.vertical-divider-line {
+  border-right: 2px solid gainsboro;
+}
+
+.interaction-buttons button {
+  width: 50%;
+  height: 2vh;
+  border: none;
+}
+
+.interaction-buttons button:hover {
+  background-color: gainsboro;
+}
