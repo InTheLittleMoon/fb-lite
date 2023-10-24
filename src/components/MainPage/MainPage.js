@@ -8,6 +8,9 @@ function MainPage({ currentUser }) {
   // states
   const [createPostTrigger, setCreatePostTrigger] = useState(false);
   const [textInputValue, setTextInputValue] = useState("");
+  const [createdPostsContainer, setCreatedPostsContainer] = useState([]);
+
+  // animation state
   const [fadeOutAnimation, setFadeOutAnimation] = useState(false);
 
   const postCreatorHandler = () => {
@@ -25,6 +28,7 @@ function MainPage({ currentUser }) {
   const createNewPost = (newPostContent) => {
     console.log(newPostContent);
     setFadeOutAnimation(true);
+    setTextInputValue("");
   };
 
   return (
@@ -36,6 +40,7 @@ function MainPage({ currentUser }) {
             <h1>username</h1>
             {/* make conditional on amount of posts */}
             <h3>x posts</h3>
+            <h3>Your posts: xxx</h3>
           </div>
           <div className="post-creator">
             {/* should be conditonal button that rerenders on click */}
@@ -92,7 +97,7 @@ function MainPage({ currentUser }) {
       <div className="user-posts-container">
         {/* should have all posts from newest at top to oldest */}
         {/* should have window extend when someone wants to comment */}
-        <Posts />
+        <Posts createdPostsContainer={createdPostsContainer} />
       </div>
     </div>
   );
