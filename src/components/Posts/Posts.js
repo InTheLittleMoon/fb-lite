@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Posts.css";
 
 function Posts({ createdPostsContainer }) {
+  // states
+  const [postLikes, setPostLikes] = useState(0);
+  const [postComments, setPostComments] = useState([]);
+
   if (createdPostsContainer.length === 0) {
     return (
       <>
@@ -11,6 +15,19 @@ function Posts({ createdPostsContainer }) {
       </>
     );
   }
+
+  const likeButtonHandler = () => {
+    console.log("you liked this comment");
+    setPostLikes((prevState) => prevState + 1);
+    console.log(postLikes);
+  };
+
+  const commentButtonHandler = () => {
+    console.log("you liked this comment");
+    let temp = "this is a temp comment";
+    setPostComments((prevState) => [...prevState, temp]);
+    console.log(postComments);
+  };
 
   return (
     <>
@@ -28,16 +45,35 @@ function Posts({ createdPostsContainer }) {
             <p>{post.content}</p>
           </div>
           <div className="post-interactions-container">
-            <div className="interaction-totals">
-              {/* should be based off post alone */}
-              <p>x likes</p>
-              <p>x comments</p>
-            </div>
+            {(postLikes > 0 || postComments.length > 0) && (
+              <div className="interaction-totals">
+                {/* should be uniquely based off post */}
+                {/* should only show when a comment or like even exists for the respective post */}
+                <p>
+                  {postLikes} {postLikes === 1 ? "Like" : "Likes"}
+                </p>
+                <p>
+                  {postComments.length}{" "}
+                  {postComments.length > 1 ? "Comments" : "Comment"}
+                </p>
+              </div>
+            )}
             <div className="interaction-buttons">
-              <button>Like</button>
+              <button
+                onClick={() => {
+                  likeButtonHandler();
+                }}
+              >
+                Like
+              </button>
               <div className="vertical-divider-line" />
-
-              <button>Comment</button>
+              <button
+                onClick={() => {
+                  commentButtonHandler();
+                }}
+              >
+                Comment
+              </button>
             </div>
           </div>
         </div>

@@ -33,7 +33,7 @@ function MainPage({ currentUser }) {
     }
 
     console.log(newPostContent);
-    let newPost = { creator: "DSSDcDcdFDd", content: newPostContent };
+    let newPost = { creator: "Gabriel", content: newPostContent };
     setCreatedPostsContainer([...createdPostsContainer, newPost]);
     setFadeOutAnimation(true);
     setTextInputValue("");
@@ -45,7 +45,10 @@ function MainPage({ currentUser }) {
         <div className="user-info-container">
           <div className="user-details">
             <h1>username</h1>
-            <h3>{createdPostsContainer.length} posts</h3>
+            <h3>
+              {createdPostsContainer.length}{" "}
+              {createdPostsContainer.length > 1 ? "posts" : "post"}
+            </h3>
             {/* should be conditional based on username that matches posts */}
             <h3>Your posts: xxx</h3>
           </div>
@@ -79,6 +82,7 @@ function MainPage({ currentUser }) {
               if (fadeOutAnimation) {
                 setCreatePostTrigger(false);
                 setFadeOutAnimation(false);
+                setTextInputValue("");
               }
             }}
           >
