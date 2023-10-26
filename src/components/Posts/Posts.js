@@ -3,6 +3,8 @@ import "./Posts.css";
 
 function Posts({ createdPostsContainer }) {
   // states
+
+  //should recieve from user login
   const [postLikes, setPostLikes] = useState(0);
   const [postComments, setPostComments] = useState([]);
 
