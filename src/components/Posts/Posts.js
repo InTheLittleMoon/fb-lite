@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import "./Posts.css";
 
+// images
+import deleteIcon from "../../assets/images/delete-button.png";
+import CommentThread from "../CommentThread/CommentThread";
+
 function Posts({ createdPostsContainer }) {
   // states
 
@@ -31,6 +35,10 @@ function Posts({ createdPostsContainer }) {
     console.log(postComments);
   };
 
+  const deletePostHandler = () => {
+    console.log("Comment Deleted");
+  };
+
   return (
     <>
       {createdPostsContainer.map((post, index) => (
@@ -40,6 +48,14 @@ function Posts({ createdPostsContainer }) {
             <h4>{post.creator}</h4>
             {/* date created? just timestamp and minimal date so no long form tracking needed */}
             {/* <h4>{post.creationDate}</h4> */}
+            <button
+              className="deleteButton"
+              onClick={() => {
+                deletePostHandler();
+              }}
+            >
+              <img alt="x" src={deleteIcon} />
+            </button>
           </div>
           <div className="horizontal-divider-line" />
           <div className="post-content-data">
@@ -51,13 +67,21 @@ function Posts({ createdPostsContainer }) {
               <div className="interaction-totals">
                 {/* should be uniquely based off post */}
                 {/* should only show when a comment or like even exists for the respective post */}
-                <p>
-                  {postLikes} {postLikes === 1 ? "Like" : "Likes"}
-                </p>
-                <p>
-                  {postComments.length}{" "}
-                  {postComments.length > 1 ? "Comments" : "Comment"}
-                </p>
+                <div className="totals-likes">
+                  {postLikes > 0 && (
+                    <p>
+                      {postLikes} {postLikes === 1 ? "Like" : "Likes"}
+                    </p>
+                  )}
+                </div>
+                <div className="totals-comments">
+                  {postComments.length > 0 && (
+                    <p>
+                      {postComments.length}{" "}
+                      {postComments.length > 1 ? "Comments" : "Comment"}
+                    </p>
+                  )}
+                </div>
               </div>
             )}
             <div className="interaction-buttons">

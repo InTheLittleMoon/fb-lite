@@ -22,12 +22,34 @@
 .post-creator-data {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 2rem;
 }
 
 .post-creator-data h4 {
   padding-left: 1.5%;
+}
+
+.deleteButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  margin-right: 1%;
+}
+
+.deleteButton img {
+  height: 1.2rem;
+}
+
+.deleteButton:hover {
+  filter: invert(1);
+  border-radius: 50%;
+}
+
+.deleteButton:active {
+  filter: invert(0);
 }
 
 .horizontal-divider-line {
@@ -56,6 +78,16 @@
   align-items: center;
   justify-content: space-between;
   padding: 0% 2% 1%;
+}
+
+.totals-likes {
+  width: 50%;
+}
+
+.totals-comments {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
 }
 
 .interaction-buttons {
