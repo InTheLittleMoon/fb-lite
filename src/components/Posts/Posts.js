@@ -3,10 +3,15 @@ import "./Posts.css";
 
 // images
 import deleteIcon from "../../assets/images/delete-button.png";
+
+//components
 import CommentThread from "../CommentThread/CommentThread";
+import AddCommentPopup from "../AddCommentPopup/AddCommentPopup";
 
 function Posts({ createdPostsContainer }) {
   // states
+  const [makeCommentTrigger, setMakeCommentTrigger] = useState(false);
+  const [addCommentData, setAddCommentData] = useState("");
 
   //should recieve from user login
   const [postLikes, setPostLikes] = useState(0);
@@ -29,9 +34,7 @@ function Posts({ createdPostsContainer }) {
   };
 
   const commentButtonHandler = () => {
-    console.log("you liked this comment");
-    let temp = "this is a temp comment";
-    setPostComments((prevState) => [...prevState, temp]);
+    setMakeCommentTrigger(true);
     console.log(postComments);
   };
 
@@ -41,6 +44,15 @@ function Posts({ createdPostsContainer }) {
 
   return (
     <>
+      {/* shouold have comment maker popup when triggered */}
+      {makeCommentTrigger && (
+        <AddCommentPopup
+          setMakeCommentTrigger={setMakeCommentTrigger}
+          addCommentData={addCommentData}
+          setAddCommentData={setAddCommentData}
+          setPostComments={setPostComments}
+        />
+      )}
       {createdPostsContainer.map((post, index) => (
         <div key={index} className="post">
           <div className="post-creator-data">

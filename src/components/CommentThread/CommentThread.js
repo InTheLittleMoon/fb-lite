@@ -2,7 +2,7 @@ import React from "react";
 import "./CommentThread.css";
 
 function CommentThread() {
-  return <div>CommentThread</div>;
+  return <div>commentthread</div>;
 }
 
 export default CommentThread;
