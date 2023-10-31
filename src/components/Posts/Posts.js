@@ -11,6 +11,7 @@ import AddCommentPopup from "../AddCommentPopup/AddCommentPopup";
 function Posts({ createdPostsContainer }) {
   // states
   const [makeCommentTrigger, setMakeCommentTrigger] = useState(false);
+  const [commentThreadTrigger, setCommentThreadTrigger] = useState(false);
   const [addCommentData, setAddCommentData] = useState("");
 
   //should recieve from user login
@@ -53,6 +54,13 @@ function Posts({ createdPostsContainer }) {
           setPostComments={setPostComments}
         />
       )}
+      {/* should show thread once trigger activated */}
+      {commentThreadTrigger && (
+        <CommentThread
+          postComments={postComments}
+          setCommentThreadTrigger={setCommentThreadTrigger}
+        />
+      )}
       {createdPostsContainer.map((post, index) => (
         <div key={index} className="post">
           <div className="post-creator-data">
@@ -88,7 +96,13 @@ function Posts({ createdPostsContainer }) {
                 </div>
                 <div className="totals-comments">
                   {postComments.length > 0 && (
-                    <p>
+                    <p
+                      className="greyHover"
+                      onClick={() => {
+                        setCommentThreadTrigger(true);
+                        console.log(postComments);
+                      }}
+                    >
                       {postComments.length}{" "}
                       {postComments.length > 1 ? "Comments" : "Comment"}
                     </p>

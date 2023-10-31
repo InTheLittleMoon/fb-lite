@@ -11,7 +11,7 @@ function AddCommentPopup({
   setPostComments,
 }) {
   const addCommentToArrayHandler = () => {
-    let temp = addCommentData;
+    let temp = { commentData: addCommentData };
     setPostComments((prevState) => [...prevState, temp]);
     setAddCommentData("");
     setMakeCommentTrigger(false);

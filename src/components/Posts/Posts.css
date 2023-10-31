@@ -90,6 +90,11 @@
   width: 50%;
 }
 
+.greyHover:hover {
+  background-color: gainsboro;
+  cursor: pointer;
+}
+
 .interaction-buttons {
   display: flex;
   border-top: 2px solid gainsboro;
