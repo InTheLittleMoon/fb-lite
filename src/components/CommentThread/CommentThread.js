@@ -12,27 +12,31 @@ function CommentThread({ postComments, setCommentThreadTrigger }) {
         {postComments.map((comment, index) => {
           return (
             <div className="commentBlock">
-              <div className="commentBlock-author">Gabe</div>
+              <div className="commentBlock-author">Gabriel</div>
+              <div className="horizontal-divider-line"></div>
               <div key={index} className="commentBlock-data">
                 <p>{comment.commentData}</p>
               </div>
             </div>
           );
         })}
-        <button
-          onClick={() => {
-            console.log(postComments);
-          }}
-        >
-          commentlog
-        </button>
-        <button
-          onClick={() => {
-            closeThreadHandler();
-          }}
-        >
-          Close Me
-        </button>
+        <div className="commentBlock-buttons">
+          <button
+            onClick={() => {
+              console.log(postComments);
+            }}
+          >
+            commentlog
+          </button>
+          <div className="vertical-divider-line" />
+          <button
+            onClick={() => {
+              closeThreadHandler();
+            }}
+          >
+            Close Me
+          </button>
+        </div>
       </div>
     </div>
   );

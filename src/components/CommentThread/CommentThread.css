@@ -14,8 +14,9 @@
   position: relative;
   padding: 20px;
   width: 100%;
-  max-width: 640px;
-  height: 25vh;
+  max-width: 650px;
+  max-height: 50vh;
+  overflow-y: auto;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -23,6 +24,33 @@
 }
 
 .commentBlock {
-  width: 95%;
-  border: 1.5px solid gainsboro;
+  width: 99%;
+  border: 2px solid gainsboro;
+  margin-bottom: 1%;
+}
+
+.commentBlock-author {
+  padding-left: 1.5%;
+  font-weight: 600;
+}
+
+.commentBlock-data p {
+  padding-left: 1.5%;
+}
+
+.commentBlock-buttons {
+  display: flex;
+  width: 99%;
+  margin-top: 2%;
+  border: 1px solid gainsboro;
+}
+
+.commentBlock-buttons button {
+  width: 50%;
+  height: 2vh;
+  border: none;
+}
+
+.commentBlock-buttons button:hover {
+  background-color: gainsboro;
 }
