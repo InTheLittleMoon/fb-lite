@@ -8,7 +8,7 @@ import deleteIcon from "../../assets/images/delete-button.png";
 import CommentThread from "../CommentThread/CommentThread";
 import AddCommentPopup from "../AddCommentPopup/AddCommentPopup";
 
-function Posts({ createdPostsContainer }) {
+function Posts({ createdPostsContainer, currentUser }) {
   // states
   const [makeCommentTrigger, setMakeCommentTrigger] = useState(false);
   const [commentThreadTrigger, setCommentThreadTrigger] = useState(false);
@@ -41,6 +41,7 @@ function Posts({ createdPostsContainer }) {
 
   const deletePostHandler = () => {
     console.log("Comment Deleted");
+    console.log(createdPostsContainer);
   };
 
   return (
@@ -65,10 +66,7 @@ function Posts({ createdPostsContainer }) {
       {createdPostsContainer.map((post, index) => (
         <div key={index} className="post">
           <div className="post-creator-data">
-            {/* Populate post creator data here */}
-            <h4>{post.creator}</h4>
-            {/* date created? just timestamp and minimal date so no long form tracking needed */}
-            {/* <h4>{post.creationDate}</h4> */}
+            <h4>{currentUser.username}</h4>
             <button
               className="deleteButton"
               onClick={() => {

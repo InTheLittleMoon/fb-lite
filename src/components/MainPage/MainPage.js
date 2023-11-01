@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./MainPage.css";
-import axios from "axios";
+
+//default axios
+import axiosInstance from "../../axiosInstance";
 
 //components
 import Posts from "../Posts/Posts";
@@ -29,14 +31,29 @@ function MainPage({ currentUser }) {
   const createNewPost = (newPostContent) => {
     // handles empty posts
     if (newPostContent === "") {
+      console.log(currentUser);
       return;
     }
 
-    console.log(newPostContent);
-    let newPost = { creator: "Gabriel", content: newPostContent };
-    setCreatedPostsContainer([...createdPostsContainer, newPost]);
-    setFadeOutAnimation(true);
-    setTextInputValue("");
+    let newPost = {
+      creator: currentUser._id,
+      content: newPostContent,
+    };
+
+    axiosInstance
+      .post("/createPost", newPost)
+      .then((response) => {
+        if (response.data.success) {
+          setCreatedPostsContainer([...createdPostsContainer, newPost]);
+          setFadeOutAnimation(true);
+          setTextInputValue("");
+        } else {
+          console.log("Failed to create post");
+        }
+      })
+      .catch((error) => {
+        console.error("Error creating post:", error);
+      });
   };
 
   return (
@@ -105,7 +122,10 @@ function MainPage({ currentUser }) {
       </div>
       <div className="user-posts-container">
         {/* should have window extend when someone wants to comment */}
-        <Posts createdPostsContainer={createdPostsContainer} />
+        <Posts
+          createdPostsContainer={createdPostsContainer}
+          currentUser={currentUser}
+        />
       </div>
     </div>
   );

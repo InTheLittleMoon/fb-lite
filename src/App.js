@@ -11,10 +11,9 @@ import MainPage from "./components/MainPage/MainPage";
 function App() {
   //states
   const [currentUser, setCurrentUser] = useState(null);
-  const [loggedInStatus, setLoggedInStatus] = useState(true);
+  const [loggedInStatus, setLoggedInStatus] = useState(false);
 
   const loginHandler = (userLoginInput) => {
-    console.log(userLoginInput);
     const user = userLoginInput;
 
     axiosInstance
@@ -24,8 +23,7 @@ function App() {
       .then(function (response) {
         console.log(response);
         if (response.data.success) {
-          setCurrentUser(response.data);
-          console.log(response.data);
+          setCurrentUser(response.data.user);
           setLoggedInStatus(true);
         } else {
           console.log("Login failed. Please check your credentials.");
