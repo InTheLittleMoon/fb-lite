@@ -1,14 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CommentThread.css";
 
-function CommentThread({ postComments, setCommentThreadTrigger }) {
+function CommentThread({
+  postComments,
+  setPostComments,
+  setCommentThreadTrigger,
+}) {
+  //states
+  const [inThreadCommentTrigger, setInThreadCommentTrigger] = useState(false);
+  const [inThreadTextAreaValue, setTnThreadTextAreaValue] = useState("");
+
   const closeThreadHandler = () => {
     setCommentThreadTrigger(false);
+  };
+
+  const AddCommentFromThreadHandler = (action) => {
+    if (action === "add") {
+      setInThreadCommentTrigger(true);
+    } else {
+      setTnThreadTextAreaValue("");
+      setInThreadCommentTrigger(false);
+    }
+  };
+
+  const inThreadTextAreaHandler = (event) => {
+    setTnThreadTextAreaValue(event.target.value);
+  };
+
+  const inThreadPostCommentHandler = () => {
+    console.log(inThreadTextAreaValue);
+    let temp = { commentData: inThreadTextAreaValue };
+    setPostComments((prevState) => [...prevState, temp]);
+
+    setTnThreadTextAreaValue("");
+    setInThreadCommentTrigger(false);
   };
 
   return (
     <div className="commentThreadPopup">
       <div className="commentThreadPopup-inner">
+        {inThreadCommentTrigger && (
+          <div className="in-thread-comment-box">
+            <textarea
+              onChange={(event) => {
+                inThreadTextAreaHandler(event);
+              }}
+              value={inThreadTextAreaValue}
+            ></textarea>
+            <button
+              onClick={() => {
+                inThreadPostCommentHandler();
+              }}
+            >
+              Post New Comment
+            </button>
+          </div>
+        )}
         {postComments.map((comment, index) => {
           return (
             <div className="commentBlock">
@@ -21,13 +68,24 @@ function CommentThread({ postComments, setCommentThreadTrigger }) {
           );
         })}
         <div className="commentBlock-buttons">
-          <button
-            onClick={() => {
-              console.log(postComments);
-            }}
-          >
-            commentlog
-          </button>
+          {!inThreadCommentTrigger && (
+            <button
+              onClick={() => {
+                AddCommentFromThreadHandler("add");
+              }}
+            >
+              Add Comment
+            </button>
+          )}
+          {inThreadCommentTrigger && (
+            <button
+              onClick={() => {
+                AddCommentFromThreadHandler("cancel");
+              }}
+            >
+              Cancel Comment
+            </button>
+          )}
           <div className="vertical-divider-line" />
           <button
             onClick={() => {

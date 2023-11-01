@@ -59,6 +59,7 @@ function Posts({ createdPostsContainer }) {
         <CommentThread
           postComments={postComments}
           setCommentThreadTrigger={setCommentThreadTrigger}
+          setPostComments={setPostComments}
         />
       )}
       {createdPostsContainer.map((post, index) => (
