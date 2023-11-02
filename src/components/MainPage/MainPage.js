@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./MainPage.css";
 
 //default axios
@@ -44,7 +44,10 @@ function MainPage({ currentUser }) {
       .post("/createPost", newPost)
       .then((response) => {
         if (response.data.success) {
-          setCreatedPostsContainer([...createdPostsContainer, newPost]);
+          setCreatedPostsContainer([
+            ...createdPostsContainer,
+            response.data.post,
+          ]);
           setFadeOutAnimation(true);
           setTextInputValue("");
         } else {
@@ -56,18 +59,35 @@ function MainPage({ currentUser }) {
       });
   };
 
+  // deals with getting list of posts
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axiosInstance.get("/posts");
+        if (response.data.success) {
+          console.log(response.data);
+          setCreatedPostsContainer(response.data.posts);
+        } else {
+          console.log("Failed to fetch posts");
+        }
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
     <div className="main-container">
       <div className="user-container">
         <div className="user-info-container">
           <div className="user-details">
-            <h1>username</h1>
+            <h1>{currentUser.username}</h1>
             <h3>
               {createdPostsContainer.length}{" "}
-              {createdPostsContainer.length > 1 ? "posts" : "post"}
+              {createdPostsContainer.length === 1 ? "post" : "posts"}
             </h3>
-            {/* should be conditional based on username that matches posts */}
-            <h3>Your posts: xxx</h3>
           </div>
           <div className="post-creator">
             {!createPostTrigger && (
