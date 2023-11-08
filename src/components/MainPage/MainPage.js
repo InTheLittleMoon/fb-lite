@@ -84,25 +84,6 @@ function MainPage({ currentUser }) {
     fetchPosts();
   }, []);
 
-  // deals with getting list of posts
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await axiosInstance.get("/posts");
-        if (response.data.success) {
-          console.log(response.data);
-          // setCreatedPostsContainer(response.data.posts);
-        } else {
-          console.log("Failed to fetch posts");
-        }
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
-    };
-
-    fetchPosts();
-  }, []);
-
   return (
     <>
       {/* shouold have comment maker popup when triggered */}
