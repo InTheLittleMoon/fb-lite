@@ -99,8 +99,8 @@ function MainPage({ currentUser }) {
       {commentThreadTrigger && (
         <CommentThread
           postComments={postComments}
-          setCommentThreadTrigger={setCommentThreadTrigger}
           setPostComments={setPostComments}
+          setCommentThreadTrigger={setCommentThreadTrigger}
         />
       )}
       <div className="main-container">
